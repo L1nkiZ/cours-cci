@@ -6,3 +6,38 @@ Peu avant le cours, l'enseignant et les apprenants reçoivent une invitation sti
 - l'adresse et la salle
 - la liste des participants
  
+
+table utilisateur :
+
+id
+user_nom 	var_char 255
+user_prenom 	var_char 255
+user_email 	var_char 255
+
+
+table matière :
+
+id
+nom_matiere 	var_char 255
+description 	textarea
+
+
+table batiment :
+
+id
+nom_bat 	var_char 5
+adresse_bat	
+
+
+table salle:
+
+id_salle
+num_bat
+
+table cours:
+
+id
+date_cours
+num_salle
+nom_bat
+
