@@ -1,0 +1,3 @@
+Un nouveau site de vente en ligne aimerait lancer un nouveau concept. Il propose aux clients d’acheter et de se faire livrer quand bon leur semble et le site facture ses clients une seule fois le dernier jour du mois. Chaque fin de mois, le site veut donc envoyer une facture à ses clients qui contient l’ensemble des achats du mois.
+Le but est donc d’écrire le dictionnaire des données sachant qu’un client est connu par son adresse mail, son nom, son prénom et son adresse de facturation. La facture doit indiquer pour chaque achat la date, les produits, les quantités et le prix total.
+Essayons de trouver également les dépendances fonctionnelles.
