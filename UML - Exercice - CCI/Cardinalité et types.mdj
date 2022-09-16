@@ -201,7 +201,7 @@
 											"top": 252,
 											"width": 117.43798828125,
 											"height": 13,
-											"text": "+Emprunter()",
+											"text": "+Emprunter(): bool",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4420,7 +4420,18 @@
 							"_parent": {
 								"$ref": "AAAAAAF1jo9CKVBzhxM="
 							},
-							"name": "Emprunter"
+							"name": "Emprunter",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGDRlt/U5LMcxI=",
+									"_parent": {
+										"$ref": "AAAAAAF1jpdfRlkdJLE="
+									},
+									"type": "bool",
+									"direction": "return"
+								}
+							]
 						},
 						{
 							"_type": "UMLOperation",
