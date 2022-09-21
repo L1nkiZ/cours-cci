@@ -1,0 +1,3 @@
+Nous voulons représenter à l’aide d’un diagramme de séquence l’achat d’une baguette chez le boulanger. Notre boulanger est un peu original car il ne veut constituer aucun stock.
+Lorsqu’un client commande une baguette au boulanger, celui-ci appelle le meunier pour lui commander de la farine. Le meunier sélectionne donc les meilleures céréales et demande à son apprenti d’actionner la machine. L’apprenti contrôle la machine et dès que celle-ci a fini de moudre, il ramène la farine au meunier. Le meunier s’occupe de conditionner la farine puis l’envoie au boulanger. 
+Dès que le boulanger réceptionne la farine, il façonne une baguette et la met au four. Une fois la baguette bien dorée, il demande le paiement du client. Il lui rend alors la monnaie et lui donne sa baguette.
