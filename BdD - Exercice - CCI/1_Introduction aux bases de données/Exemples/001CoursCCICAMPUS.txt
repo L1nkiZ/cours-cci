@@ -1,8 +1,0 @@
-Nous aimerions modéliser notre cours de base de données qui a lieu en ce moment. Le cours regroupe un enseignant et des apprenants. Nous connaissons les noms, prénoms et adresses mail de ces personnes. Un cours a lieu normalement dans une salle qui se trouve elle-même dans un batiment. 
-
-Peu avant le cours, l'enseignant et les apprenants reçoivent une invitation stipulant :
-- Le nom du cours et son contenu
-- l'horaire du cours
-- l'adresse et la salle
-- la liste des participants
- 

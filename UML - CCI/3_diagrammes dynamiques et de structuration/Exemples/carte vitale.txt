@@ -1,4 +1,0 @@
-Nous allons mettre en place un diagramme de séquence pour demander une carte vitale.
-Lorsqu’un assuré demande une carte vitale il doit fournir une photo, une copie de ses papiers d’identité, un justificatif de domicile et un acte de naissance.
-Notre assuré Bob fait donc une demande. Il demande un justificatif de domicile à son fournisseur d’électricité, et il va faire une photo au photomaton. Pour l’acte de naissance il va voir la mairie dont il dépend. Celle-ci vérifie qu’il est bien né ici. Ce n’est pas le cas, la mairie demande donc à sa mairie de naissance de lui transmettre l’acte de naissance.
-Bob vérifie toutes les pièces et les envoie à l’assurance maladie. L’assurance maladie vérifie elle-aussi le dossier, demande la création de la carte vitale puis l’envoie à Bob.

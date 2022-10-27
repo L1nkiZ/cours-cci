@@ -1,9 +1,0 @@
-Exercice diapo 6 - BaseDeDonnée Jour 4
-
-SELECT nom FROM roman.roman
-inner join roman.estdans on roman.code_ISBN = estdans.code_ISBN
-
-SELECT nom, nom_serie FROM roman.roman
-inner join roman.estdans on roman.code_ISBN = estdans.code_ISBN
-inner join roman.serie on serie.code_serie = estdans.code_serie
-where nom like '%Harry Potter%';
