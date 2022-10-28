@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adresse search</title>
+</head>
+<body>
+    <form action="">
+        <label for ="search">Your research</label>
+        <input type="text" id ="search">
+    </form>
+</body>
+
+<script>
+    document.getElementById('search')
+        .addEventListener('input',function(event){
+            const url = "https://api-adresse.data.gouv.fr/search/?q";
+            const query = event.target.value;
+
+            if (query.length >= 3){
+                
+                    fetch(url+query)
+                        .then((response) => response.json())
+                        .then((geojson) => console.log(geojson))
+                        .catch((error) => console.log(error))
+            }
+        })   
+</script>
+</html>
