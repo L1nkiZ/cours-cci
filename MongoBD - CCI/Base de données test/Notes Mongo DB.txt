@@ -1,0 +1,7 @@
+httpswww.mockaroo.com
+
+génére des base de doonées de test 
+
+db.people.find({ "$or": [{age : { $lt: '30' }}, {age: '90'}] })
+
+faire une recherche
