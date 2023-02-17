@@ -1,0 +1,20 @@
+Personne
+{
+	"id" : 1,
+	"nom" : "John",
+	"prenom" : "Doe",
+	"equipe" : "Team Cook",
+	"intervient" : [
+		{
+			"id_projet" : 1,
+			"role" : "project owner"
+		}
+	]
+
+}
+
+Projet
+{
+	"id" : 1,
+	"nom" : "Projet secret"
+}

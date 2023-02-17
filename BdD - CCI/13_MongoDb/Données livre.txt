@@ -1,0 +1,49 @@
+Catégorie
+{
+	"id" : 1,
+	"nom" : "Fantaisie"
+}
+
+Livre
+{
+	"id" : 1,
+	"nom" : "Le Seigneur des anneaux"
+}
+
+Adresse
+{
+	"id" : 1,
+	"adresse" : "Avenue de Colmar",
+	"ville" : "Strasbourg"
+}
+
+Auteur
+{
+	"id" : 1,
+	"prenom" : "JRR",
+	"nom" : Tolkien
+}
+
+
+Auteur
+{
+	"id" : 1,
+	"prenom" : "JRR",
+	"nom" : Tolkien,
+	"adresse" : 
+		{
+		"adresse" : "Avenue de Colmar"
+		"ville" : "Strasbourg"
+		}
+}
+
+
+Livre
+{
+	"id" : 1,
+	"nom" : "Le Seigneur des anneaux",
+	"categorie" :
+		{
+		"nom" : "Fantaisie"
+		}
+}

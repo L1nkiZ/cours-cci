@@ -1,0 +1,27 @@
+-- Manipulation de données
+
+db.stock.insertMany( [
+   { objet: "journal", quantite: 25, dimensions: { h: 14, w: 21, unite: "cm" }, couleur : ["blanc"], statut: "A" },
+   { objet: "portable", quantite: 50, dimensions: { h: 8.5, w: 11, unite: "piece" }, couleur : ["rouge"], statut: "A" },
+   { objet: "papier", quantite: 100, dimensions: { h: 8.5, w: 11, unite: "ramette" }, couleur : ["rouge", "blanc"], statut: "D" },
+   { objet: "calendrier", quantite: 75, dimensions: { h: 22.85, w: 30, unite: "cm" }, couleur : ["rouge", "vert"], statut: "D" },
+   { objet: "carte", quantite: 45, dimensions: { h: 10, w: 15.25, unite: "cm" }, couleur : ["vert"], statut: "A" }
+]);
+
+-- Vues
+
+db.utilisateur.insertMany( [
+   { nom: "Bob", naissance: new Date(1979, 5, 18), couleur: "rouge"},
+   { nom: "Kim", naissance: new Date(1985, 7, 22), couleur: "bleu"},
+   { nom: "Jack", naissance: new Date(1989, 12, 11), couleur: "vert" },
+   { nom: "Alison", naissance: new Date(1975, 3, 5), couleur: "bleu"},
+   { nom: "John", naissance: new Date(1995, 11, 7), couleur: "rouge" }
+]);
+
+db.voiture.insertMany( [
+   { nom: "Bob", modele : "Renault Clio"},
+   { nom: "Kim",  modele : "Peugeot 206"},
+   { nom: "Jack",  modele : "Porsche Panamera"},
+   { nom: "Alison",  modele : "Dacia Duster"},
+   { nom: "John",  modele : "Citroen C4" }
+]);

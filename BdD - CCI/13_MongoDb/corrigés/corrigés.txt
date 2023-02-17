@@ -1,0 +1,169 @@
+-- Import
+
+mongoimport --db test --collection personne --type=json --file "C:\Informatique\CCI\cours\Base de données\13_MongoDb\MOCK_DATA_personne.json" --jsonArray
+mongoimport --db test --collection personne --type=csv --file "C:\Informatique\CCI\cours\Base de données\13_MongoDb\MOCK_DATA_personne.csv" --headerline
+
+-- Exemple animal
+
+--> Création
+db.createCollection("animal")
+db.animal.insertOne({"nom":"Garfield", "maitre" : "John"})
+db.animal.insertOne({"nom":"Ody", "maitre" : "John"})
+db.animal.insertMany([{"nom":"Cubitus", "maitre" : "Sémaphore"}, {"nom":"Sénéchal", "maitre" : "Sémaphore"}])
+
+--> Mise à jour
+db.animal.replaceOne({"nom":"Cubitus"}, {"nom" : "Ulna", "maitre" : "Sémaphore"})
+db.animal.replaceOne({"nom":"Ulna"}, {$set: {"nom" : "Cubitus"}})
+
+--> Sélection 
+db.animal.find({"maitre": "Sémaphore"})
+db.animal.find({"nom" : "Cubitus", "maitre": "Sémaphore"})
+
+--> Suppression
+db.animal.deleteMany({"maitre" : "Sémaphore"})
+
+-- Requêtes sur personnes
+
+--> opérateurs de comparaisons :
+db.personne.find({"Couleur" : "Red"})
+db.personne.find({"Sexe" : {"$ne": "Male"}})
+db.personne.find({"Age" : {"$lt": 30}})
+db.personne.find({"Age" : {"$gte": 80}})
+db.personne.find({"Age" : {"$gte": 80}, "Couleur" : "Pink"})
+
+--> opérateur logique
+db.personne.find({"$or" : [{"Age" : {"$lt": 30}}, {"Age" : {"$gt": 90}}]})
+db.personne.find({"Voiture" : {$in : ["Audi", "Jaguar", "Ford"]}})
+db.personne.find({"Voiture" : {$nin : ["Audi", "Jaguar", "Ford"]}})
+db.personne.find({"Langue" : { $exists : 1}})
+db.personne.find({"Langue" : { $exists : 0}})
+
+--> Filtrage champs
+db.personne.find({"Age" : {"$lt": 30}}, {"Nom":1, "Prenom":1, "_id":0})
+
+-- Objets et tableaux
+
+--> Recherche dans un objet
+db.stock.find({"dimensions.h" : {"$gt" : 10 }}) 
+db.stock.find({"statut" : "A", "dimensions.w" : {"$lt" : 15 }}) 
+db.stock.find({"dimensions.h" : {"$lt" : 10 }, "dimensions.w" : {"$gt" : 10 }}) 
+
+--> Recherche dans un tableau
+db.stock.find({couleur: ["rouge", "blanc"]})
+db.stock.find({$and : [{"couleur" : { $all : ["rouge", "blanc"]}}, {"couleur" : {$size : 2 }}]})
+db.stock.find({couleur: {$all: ["vert"]}})
+db.stock.find({dimensions: {$gt: 20}})
+db.stock.find({dimensions: {$not : {$lt: 20}}})
+
+-- Opération curseur
+
+db.personne.find().count()
+db.personne.find({"Voiture" : "Audi"}).count()
+db.personne.count({"Voiture" : "Audi"})
+db.personne.find().sort({"Nom" : 1}).limit(5)
+db.personne.find().sort({"Nom" : 1}).skip(10).limit(5)
+db.personne.find().sort({"Age" : -1}).limit(1)
+
+-- Agregation
+
+var pipeline = [
+	{$sort: {"Nom" : 1} }	
+];
+
+var pipeline = [
+	{$sort: {"Nom" : 1} },
+	{$limit : 5} 	
+];
+
+var pipeline = [
+    {$group: {"_id": "$Voiture", "count": {"$sum": 1}}},
+	{$sort: {"Nom" : 1} },
+];
+
+var pipeline = [
+    {$group: {"_id": "$Voiture", "count": {"$sum": "$Age"}}},
+	{$sort: {"Nom" : 1} },
+];
+
+var pipeline = [
+    	{$group: {"_id": "$Voiture", "count": {"$sum": 1}}},
+	{$sort: {"Nom" : 1} },
+	{$match : {"count" : {"$gte" : 10 } } }
+];
+
+var pipeline = [
+    {$group: {"_id": "$Voiture", "max": {"$max": "$Age"}, "min": {"$min": "$Age"}, "avg": {"$avg": "$Age"}}},
+	{$sort: {"Nom" : 1} }
+];
+
+var pipeline = [
+    {$group: {"_id": "$Voiture", "max": {"$max": "$Age"}, "min": {"$min": "$Age"}, "avg": {"$avg": "$Age"}}},
+	{$sort: {"Nom" : 1} },
+    {$match : {"avg" : {"$gte" : 50 } } }
+];
+
+
+db.personne.aggregate(pipeline);
+
+
+-- Compass :
+
+1. $project
+
+/**
+ * specifications: The fields to
+ *   include or exclude.
+ */
+{
+  _id:0,
+  Prenom:1,
+  Nom: 1,
+  Sexe:1,
+  Voiture:1,
+  Age:1
+}
+
+2. $match
+
+/**
+ * query: The query in MQL.
+ */
+{
+  Age : {$exists : true}
+}
+
+3. $group
+
+/**
+ * _id: The id of the group.
+ * fieldN: The first field name.
+ */
+{
+  _id: '$Voiture',
+  avg: {
+    $avg: '$Age'
+  }
+}
+
+-- Vues
+db.createView("util_rouge", "utilisateur", {$match : {couleur: "rouge"}})
+db.utilisateur.insert({nom: "Ralph", naissance: new Date(1967, 10, 8), "couleur": "rouge"})
+
+db.util_rouge.find().sort({nom: 1})
+db.util_rouge.find().sort({nom: -1})
+
+db.createView("rouge_1980", "util_rouge", [{$match : {naissance: {$gt : new Date(1980, 1, 1)}}}])
+db.createView("public", "utilisateur", [{$project : {nom: 1, couleur:1}}])
+db.createView("roule", "utilisateur", [{ 
+            "$lookup" : { 
+                "from" : "voiture", 
+                "localField" : "nom", 
+                "foreignField" : "nom",
+                "as" : "voitureListe"
+            }
+        }])
+
+
+
+
+
